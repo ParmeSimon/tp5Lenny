@@ -15,11 +15,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Railway link
-        run: railway link ${{ secrets.RAILWAY_PROJECT_ID }}
-      
       - name: Install Railway CLI
         run: npm install -g @railway/cli
+      
+      - name: Railway link
+        run: railway link ${{ secrets.RAILWAY_PROJECT_ID }}
       
       - name: Deploy Backend to Railway
         run: railway up --service backend
