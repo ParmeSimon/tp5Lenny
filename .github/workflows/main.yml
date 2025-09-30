@@ -10,19 +10,21 @@ jobs:
   backend:
     name: Deploy Backend
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-      
-      - name: Deploy Backend
-        run: railway up --service 0b33271c-aaf3-4eb3-aa56-c32fda33b4c7
-        working-directory: backend
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+      - name: Railway Preview Deploy
+        uses: ayungavis/railway-preview-deploy@v1.0.2
+        with:
+          railway_api_token: ${{ secrets.RAILWAY_API_TOKEN }}
+          project_id: ${{ secrets.RAILWAY_PROJECT_ID }}
+          environment_name: 'staging'
+          preview_environment_name: 'pr-${{ github.event.pull_request.number }}'
+          environment_variables:
+            '{"DATABASE_URL": "postgres://user:pass@host/db"}'
+          branch_name: ${{ github.head_ref }}
+          cleanup: 'true'
 
   frontend:
     name: Deploy Frontend
