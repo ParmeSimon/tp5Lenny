@@ -18,15 +18,11 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
       
-      - name: Railway link
-        run: railway link ${{ secrets.RAILWAY_PROJECT_ID }}
-      
-      - name: Deploy Backend to Railway
-        run: railway up --service backend
+      - name: Deploy Backend
+        run: railway up --service 0b33271c-aaf3-4eb3-aa56-c32fda33b4c7
+        working-directory: backend
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-
 
   frontend:
     name: Deploy Frontend
