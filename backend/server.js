@@ -4,15 +4,15 @@ const app = express();
 
 // Middleware CORS pour permettre les requêtes depuis le frontend
 app.use(cors({
-  origin: '*', // Port du frontend React
-  credentials: true
+	origin: '*', // Port du frontend React
+	credentials: true
 }));
 
 app.use(express.json());
 
 let tasks = [
-	{ id: 1, title: 'Préparer TP5', description: 'Préparer le TP5 pour les CDA à l\'EKOD, reprendre le TP3 et ajouter un frontend.', completed: true },
-	{ id: 2, title: 'Faire les courses', description: 'Acheter du pain, du lait et des œufs.', completed: false },
+	{ id: 1, title: 'Préparer TP6', description: 'Préparer le TP5 pour les CDA à l\'EKOD, reprendre le TP3 et ajouter un frontend.', completed: true },
+	{ id: 2, title: 'Faire les courses', description: 'Acheter du Lait et jamais revenir( le goss est triso).', completed: false },
 	{ id: 3, title: 'Appeler le plombier', description: 'Prendre rendez-vous pour la fuite dans la salle de bain.', completed: false }
 ];
 let nextId = 2;
@@ -23,11 +23,11 @@ app.post('/tasks', (req, res) => {
 	if (!title) {
 		return res.status(400).json({ error: 'Le titre est requis.' });
 	}
-	const task = { 
-		id: nextId++, 
-		title, 
-		description: description || '', 
-		completed: !!completed 
+	const task = {
+		id: nextId++,
+		title,
+		description: description || '',
+		completed: !!completed
 	};
 	tasks.push(task);
 	res.status(201).json(task);
@@ -35,9 +35,9 @@ app.post('/tasks', (req, res) => {
 
 // GET /tasks : Récupère la liste complète des tâches
 app.get('/tasks', (req, res) => {
-    if(req.query.status && req.query.status === 'completed'){
-        return res.json(tasks.filter(t => t.completed));
-    }
+	if (req.query.status && req.query.status === 'completed') {
+		return res.json(tasks.filter(t => t.completed));
+	}
 	res.json(tasks);
 });
 
@@ -68,14 +68,14 @@ app.delete('/tasks/:id', (req, res) => {
 
 // PATCH /tasks/:id/completed : Bascule l'état d'une tâche a complétée
 app.patch('/tasks/:id/completed', (req, res) => {
-    const id = parseInt(req.params.id);
-    const task = tasks.find(t => t.id === id);
-    if (!task) {
-        return res.status(404).json({ error: 'Tâche non trouvée.' });
-    }
-    task.completed = !task.completed;
+	const id = parseInt(req.params.id);
+	const task = tasks.find(t => t.id === id);
+	if (!task) {
+		return res.status(404).json({ error: 'Tâche non trouvée.' });
+	}
+	task.completed = !task.completed;
 	console.log(`Tâche "${task.title}" ${task.completed ? "complétée" : "non complétée"}`);
-    res.json(task);
+	res.json(task);
 });
 
 const PORT = process.env.PORT || 8000;
