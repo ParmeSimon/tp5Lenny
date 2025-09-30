@@ -17,12 +17,12 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
       
       - name: Deploy Backend to Railway
-        run: railway up --service backend
+        uses: bervProject/railway-deploy@main
+
+        with:
+          service: "tp5Lenny"
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
