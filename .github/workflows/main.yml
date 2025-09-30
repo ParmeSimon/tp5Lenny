@@ -15,21 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "22.x"
-
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy Backend to Railway
-        run: |
-          railway link --service backend
-          railway up
+      - name: Deploy Backend
+        run: railway up --service 0b33271c-aaf3-4eb3-aa56-c32fda33b4c7
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
   frontend:
