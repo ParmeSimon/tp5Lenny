@@ -21,7 +21,7 @@ jobs:
       - name: Deploy Backend to Railway
         uses: bervProject/railway-deploy@main
         with:
-          service: "0b33271c-aaf3-4eb3-aa56-c32fda33b4c7"
+          service: "690ae76b-bb2b-458f-ae94-55b09d52e907"
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
