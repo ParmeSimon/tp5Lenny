@@ -8,9 +8,6 @@ on:
 
 jobs:
   backend:
-    defaults:
-      run:
-        working-directory: backend
     name: Deploy Backend
     runs-on: ubuntu-latest
 
