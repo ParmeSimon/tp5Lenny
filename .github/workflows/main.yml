@@ -19,7 +19,7 @@ jobs:
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       with:
-        service: "my-service"
+        service: "0b33271c-aaf3-4eb3-aa56-c32fda33b4c7"
 
   frontend:
     defaults:
