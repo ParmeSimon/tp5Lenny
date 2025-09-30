@@ -20,7 +20,6 @@ jobs:
       
       - name: Deploy Backend to Railway
         uses: bervProject/railway-deploy@main
-
         with:
           service: "0b33271c-aaf3-4eb3-aa56-c32fda33b4c7"
         env:
